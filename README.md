@@ -7,9 +7,9 @@ I will be checking off the topics as I complete them. You can find the code for 
 
 - [x] Agentic AI Fundamentals
 - [x] LangChain vs. LangGraph
-- [ ] Sequential Workflows
-- [ ] Parallel Workflows
-- [ ] Branching & Nested Workflows
+- [x] Sequential Workflows
+- [x] Parallel Workflows
+- [x] Branching & Nested Workflows
 - [ ] Iterative Workflows
 - [ ] Memory (Short-term & Long-term)
 - [ ] Human-in-the-Loop Interaction
