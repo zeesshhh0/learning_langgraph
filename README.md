@@ -10,8 +10,8 @@ I will be checking off the topics as I complete them. You can find the code for 
 - [x] Sequential Workflows
 - [x] Parallel Workflows
 - [x] Branching & Nested Workflows
-- [ ] Iterative Workflows
-- [ ] Memory (Short-term & Long-term)
+- [x] Iterative Workflows
+- [x] Memory (Short-term & Long-term)
 - [ ] Human-in-the-Loop Interaction
 - [ ] Debugging & Monitoring
 - [ ] LangGraph Studio & Tracing
