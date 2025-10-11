@@ -2,8 +2,10 @@ from langgraph.graph import StateGraph, START, END
 from typing import List, TypedDict, Annotated
 import operator
 from dotenv import load_dotenv
-from langchain_core.messages import BaseMessage, HumanMessage
+from langchain_core.messages import BaseMessage, HumanMessage, AIMessage
+from langchain_core.runnables.config import RunnableConfig
 from langchain.chat_models import init_chat_model
+from langgraph.checkpoint.memory import InMemorySaver
 
 load_dotenv()
 
@@ -17,30 +19,15 @@ def chat(state: ChatState):
 
   response = llm.invoke(state['messages'])
   
-  return {'messages': [response.content]}
+  return {'messages': [AIMessage(response.content)]}
 
 
 graph = StateGraph(ChatState)
 
-graph.add_node('chat', chat)
+checkpointer = InMemorySaver()
 
+graph.add_node('chat', chat)
 graph.add_edge(START, 'chat')
 graph.add_edge('chat', END)
 
-workflow = graph.compile()
-
-
-while True:
-  user_query = input("you: ")
-  
-  if user_query == 'exit':
-    print("good byee!")
-    break
-  
-  init_state = {'messages': [HumanMessage(user_query)]}
-  
-  final_state = workflow.invoke(init_state)
-  
-  print(final_state['messages'][1])
-  
-  
+workflow = graph.compile(checkpointer=checkpointer)

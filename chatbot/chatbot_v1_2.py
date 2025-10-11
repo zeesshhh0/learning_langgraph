@@ -41,9 +41,9 @@ while True:
     print("good byee!")
     break
   
-  config = {"configurable": {"thread_id": "1"}}
+  config: RunnableConfig = {"configurable": {"thread_id": "1"}}
   
-  init_state = {'messages': [HumanMessage(user_query)]}
+  init_state: ChatState = {'messages': [HumanMessage(user_query)]}
   
   final_state = workflow.invoke(init_state, config=config)
   
